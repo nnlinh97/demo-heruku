@@ -71,9 +71,9 @@ router.post('/createUser', function (req, res) {
       var db = client.db(dbName);
       var userCollection = db.collection('user');
       userCollection.insertMany(listUser).then(function (result) {
-          res.send(result);
+          res.render('users',{'data': result});
       }).catch(function (err) {
-          res.send({ error: 400, message: err });
+        res.render('users', { error: 400, message: err });
       });
   });
 });
