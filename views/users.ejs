@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr class="bg-primary">
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>BirthDate</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(function(user) { %>
+                    <tr>
+                        <td>
+                            <%= user.id %>
+                        </td>
+                        <td>
+                            <%= user.username %>
+                        </td>
+                        <td>
+                            <%= user.password %>
+                        </td>
+                        <td>
+                            <%= user.first_name %>
+                        </td>
+                        <td>
+                            <%= user.last_name %>
+                        </td>
+                        <td>
+                            <%= user.birthdate %>
+                        </td>
+                        <td>
+                            <%= user.gender %>
+                        </td>
+                        <td>
+                            <%= user.email%>
+                        </td>
+                        <td>
+                            <!-- khi xóa một row thì buttom phải là submit rồi nhấn nó gửi cái value input đi
+                            name của input là để qua api lấy ra từ body  -->
+                            <form action="/users/deleteUser" method="post">
+                                <input type="hidden" name="id" value="<%= user.id %>">
+                                <button type="submit" id="<%= user.id %>">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            </form>
+
+                        </td>
+                        <tr>
+                            <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>
