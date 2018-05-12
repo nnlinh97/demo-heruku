@@ -6,9 +6,10 @@ var listUser = require('../models/users.js').User;
 
 var MongoClient = require('mongodb').MongoClient;
 // Connection URL
-var url = 'mongodb://localhost:27017';
+//var url = 'mongodb://localhost:27017';
+var url = 'mongodb://Users:nnlinh97.@ds119080.mlab.com:19080/nnlinh97';
 // Database Name
-var dbName = 'QLNS';
+var dbName = 'nnlinh97';
 
 
 
