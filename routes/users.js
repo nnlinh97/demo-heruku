@@ -17,7 +17,44 @@ const url = process.env.MONGODB_URL || 'mongodb://localhost:27017';
 const dbName = process.env.MONGODB_NAME || 'QLNS';
 //var dbName = 'nnlinh97';
 
-
+var listUser = [
+  {
+    "email": "melany.wijngaard@example.com",
+    "gender": "female",
+    "phone_number": "(727)-033-9347",
+    "birthdate": 608022796,
+    "location": {
+      "street": "2431 predikherenkerkhof",
+      "city": "staphorst",
+      "state": "gelderland",
+      "postcode": 64265
+    },
+    "username": "bigpeacock217",
+    "password": "eagle",
+    "first_name": "melany",
+    "last_name": "wijngaard",
+    "title": "miss",
+    "picture": "women/70.jpg"
+  },
+  {
+    "email": "nanna.pedersen@example.com",
+    "gender": "female",
+    "phone_number": "43672992",
+    "birthdate": 591428535,
+    "location": {
+      "street": "2177 fåborgvej",
+      "city": "aarhus",
+      "state": "syddanmark",
+      "postcode": 87547
+    },
+    "username": "purpleduck599",
+    "password": "davids",
+    "first_name": "nanna",
+    "last_name": "pedersen",
+    "title": "ms",
+    "picture": "women/68.jpg"
+  },
+];
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -71,9 +108,9 @@ router.post('/createUser', function (req, res) {
       var db = client.db(dbName);
       var userCollection = db.collection('user');
       userCollection.insertMany(listUser).then(function (result) {
-          res.render('users',{'data': result});
+          res.send("success");
       }).catch(function (err) {
-        res.render('users', { error: 400, message: err });
+        res.send("fail!");
       });
   });
 });
