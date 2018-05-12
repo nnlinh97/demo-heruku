@@ -14,7 +14,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 const url = process.env.MONGODB_URL || 'mongodb://localhost:27017';
 
-const dbName = process.env.MONGODB_NAME || 'nnlinh97';
+const dbName = process.env.MONGODB_NAME || 'QLNS';
 //var dbName = 'nnlinh97';
 
 
@@ -62,6 +62,21 @@ router.get('/', function (req, res, next) {
   res.send(listUser);
 });
 
+router.post('/createUser', function (req, res) {
+  MongoClient.connect(url, function (err, client) {
+      if (err) {
+          return res.send({ error: "mongoError", message: err });
+      }
+
+      var db = client.db(dbName);
+      var userCollection = db.collection('user');
+      userCollection.insertMany(userList).then(function (result) {
+          res.send(result);
+      }).catch(function (err) {
+          res.send({ error: 400, message: err });
+      });
+  });
+});
 
 router.get('/getUser', function (req, res) {
 
