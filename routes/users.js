@@ -99,7 +99,7 @@ router.get('/', function (req, res, next) {
   res.send(listUser);
 });
 
-router.post('/createUser', function (req, res) {
+router.get('/createUser', function (req, res) {
   MongoClient.connect(url, function (err, client) {
       if (err) {
           return res.send({ error: "mongoError", message: err });
